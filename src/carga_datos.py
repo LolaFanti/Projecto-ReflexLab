@@ -27,8 +27,6 @@ def parsear_linea (linea):
     return diccio
     
 
-
-
 def cargar_datos(ruta_archivo):
     """
     Carga datos desde un archivo y devuelve una lista de registros.
@@ -42,5 +40,9 @@ def cargar_datos(ruta_archivo):
     lista_registros : list
         Lista de registros parseados a partir del archivo.
     """
-    
+    archivo = open(ruta_archivo + ".csv", "r")
+    lineas = archivo.readlines()
+    parseo = parsear_linea(lineas)
+    archivo.close()
+    return parseo
     
