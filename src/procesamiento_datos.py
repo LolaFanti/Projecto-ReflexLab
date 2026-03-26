@@ -10,7 +10,15 @@ def  filtrar_por_participante (datos,id_participante) :
         Del participante a filtrar.
 
     Returns
-    datos_participante_filtrado : list
+    datos_participante_filtrado : dict
         Con los datos ya filtrados del participante ingresado.
 
     """
+    
+    for dato in datos :
+        if dato["id_participante"]== id_participante:
+            return dato
+
+
+
+        
