@@ -7,8 +7,7 @@ def parsear_linea (linea):
         Informacion cruda del archivo.
 
     Returns
-    dicc : diccionario
-        Diccionario con la informacion del archivo ordenado.
+    list : lista con los valores parseados
     """
     lista = linea.strip().split(";")
     id_usuario = lista[0]
@@ -20,11 +19,8 @@ def parsear_linea (linea):
     r_respuesta = lista[6]
     condicion = lista[7]
     
-    diccio = {"id":id_usuario, "trial": trial, "estimulo": estimulo, 
-              "tiempo inicio": t_inicio, "respuesta": respuesta, 
-              "tiempo reaccion": t_reaccion, "resultado de respuesta": r_respuesta,
-              "condicion":condicion}
-    return diccio
+    info = [id_usuario, trial, estimulo, t_inicio, respuesta, t_reaccion, r_respuesta, condicion]
+    return info
     
 
 def cargar_datos(ruta_archivo):
@@ -42,7 +38,18 @@ def cargar_datos(ruta_archivo):
     """
     archivo = open(ruta_archivo + ".csv", "r")
     lineas = archivo.readlines()
-    parseo = parsear_linea(lineas)
     archivo.close()
-    return parseo
+    
+    lista= []
+    
+    for linea in lineas:
+        datos = parsear_linea(linea)
+
+        registro = {"id": datos[0], "trial": datos[1], "estimulo": datos[2],
+            "tiempo_inicio": datos[3], "respuesta": datos[4],"tiempo_reaccion": datos[5],
+            "resultado_respuesta": datos[6],"condicion": datos[7]}
+
+        lista.append(registro)
+
+    return lista
     
