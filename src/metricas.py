@@ -17,12 +17,14 @@ def calcular_tiempo_reaccion_promedio(participante_diccio):
     Returns
     -------
     float: El promedio del tiempo de reaccion.
+    string: Si la lista de tiempos esta vacia, devuelve un mensaje que aclara que no hay datos en la lista..
 
     """
     
     datos = participante_diccio["datos"]
     if len(datos) == 0:
-       return 0.0
+       mensaje = "No hay datos para calcular promedio"
+       return mensaje
    
     suma = 0
 
@@ -46,10 +48,12 @@ def calcular_tasa_error(participante_diccio):
     -------
     float: proporcion de respuestas incorrectas.
 
+    string: Si la lista de tiempos esta vacia, devuelve un mensaje que aclara que no hay datos en la lista
     """
     datos = participante_diccio["datos"]
     if len(datos) == 0:
-       return 0.0
+       mensaje = "No hay datos para calcular tasa de error"
+       return mensaje
 
     errores = 0
 
