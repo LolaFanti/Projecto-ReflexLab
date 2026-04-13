@@ -1,6 +1,6 @@
-def  filtrar_por_participante (datos,id_participante) :
+def  filtrar_por_participante (lista,id_buscado) :
     """
-    Selecciona los datos de un participante.
+    Selecciona los datos de un participante y los separa en un diccionario.
 
     Parameters
     ----------
@@ -10,19 +10,17 @@ def  filtrar_por_participante (datos,id_participante) :
         Id del participante a filtrar.
 
     Returns
-    datos_participante_filtrado : list
+    datos_participante_filtrado : dicc
         Con los datos ya filtrados del participante ingresado.
 
     """
-    datos_filtrados = []
-    for dato in datos:
-        if dato["id"] == id_participante:
-            datos_filtrados.append(dato)
+    resultado = []
 
-    return datos_filtrados
-
-#me pedia que devuelva un diccionario pero me parece imposible separar 
-#la informacion de los participantes que viene de multiples diccionaraios
-#a uno solo.
+    for registro in lista:
+        if registro["id"] == id_buscado:
+            resultado.append(registro)
+    
+    datos_participante_filtrado = {"id": id_buscado, "datos": resultado}
+    return datos_participante_filtrado
 
         
