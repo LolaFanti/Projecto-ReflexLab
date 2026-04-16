@@ -13,7 +13,7 @@ def parsear_linea (linea):
         Si la línea está vacía, tiene una cantidad incorrecta de campos
         o contiene datos numéricos inválidos.
     """
-    lista = linea.strip().split(";")
+    lista = linea.strip().split(",")
     id_usuario = lista[0] 
     trial = int(lista[1])
     t_inicio = float(lista[3])

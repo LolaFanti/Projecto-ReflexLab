@@ -58,7 +58,7 @@ def calcular_tasa_error(participante_diccio):
     errores = 0
 
     for dato in datos:
-       if dato["resultado_respuesta"].lower() == "incorrecta":
+       if dato["resultado_respuesta"].lower() == "incorrecto":
            errores += 1
 
     tasa = errores / len(datos)
