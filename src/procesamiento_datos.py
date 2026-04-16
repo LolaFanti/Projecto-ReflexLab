@@ -19,9 +19,6 @@ def  filtrar_por_participante (lista,id_buscado) :
     for registro in lista:
         if registro["id"] == id_buscado:
             resultado.append(registro)
-        else:
-            mensaje = "No existe ese participante"
-            return mensaje
     
     datos_participante_filtrado = {"id": id_buscado, "datos": resultado}
     return datos_participante_filtrado
