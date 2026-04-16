@@ -44,8 +44,8 @@ def cargar_datos(ruta_archivo):
     try: 
         with open(ruta_archivo + ".csv", "r") as archivo: 
             lineas = archivo.readlines()
-    except:
-        raise FileNotFoundError ("Archivo no encontrado")
+    except Exception:
+        raise FileNotFoundError("Archivo no encontrado")
     
     lista= []
     
