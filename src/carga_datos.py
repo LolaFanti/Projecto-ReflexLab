@@ -17,32 +17,30 @@ def parsear_linea (linea):
         o contiene datos numéricos inválidos.
     """
     
+    if linea.strip() == "":
+        raise ValueError("La línea está vacía")
+
     lista = linea.strip().split(",")
+
     if len(lista) != 8:
-      raise ValueError("La línea no tiene la cantidad correcta de columnas")
-      
-    try:
-        if len(lista) != 8:
-            raise ValueError("La línea no tiene la cantidad correcta de columnas")
-        id_usuario = lista[0] 
-        trial = convertir_a_int(lista[1],"trial")
-        trial1= verificar_positivo(trial)
-        t_inicio= convertir_a_float(lista[3])
-        t_reaccion = convertir_a_float(lista[5], "tiempo reaccion")
-        t_reaccion1 = verificar_positivo(t_reaccion)
-        respuesta = convertir_a_bool_respuesta(lista[4])
-        estimulo = validar_go_nogo(lista[2])
-        r_respuesta = validar_respuesta(lista[6])
-        condicion = lista[7]
+        raise ValueError("La línea no tiene la cantidad correcta de columnas")
+
+    id_usuario = lista[0] 
+    trial = convertir_a_int(lista[1],"trial")
+    trial1= verificar_positivo(trial)
+    t_inicio= convertir_a_float(lista[3], "tiempo inicio")
+    t_inicio = verificar_positivo(t_inicio)
+    t_reaccion = convertir_a_float(lista[5], "tiempo reaccion")
+    t_reaccion1 = verificar_positivo(t_reaccion)
+    respuesta = convertir_a_bool_respuesta(lista[4])
+    estimulo = validar_go_nogo(lista[2])
+    r_respuesta = validar_respuesta(lista[6])
+    condicion = lista[7]
         
-        info = [id_usuario, trial1, estimulo, t_inicio, respuesta, t_reaccion1, r_respuesta, condicion]
-        return info
+    info = [id_usuario, trial1, estimulo, t_inicio, respuesta, t_reaccion1, r_respuesta, condicion]
+    return info
         
-    except ValueError as e:
-        print(e)
-    except TypeError as e:
-        print(e)
-    
+
 
 def cargar_datos(ruta_archivo):
     """
@@ -75,16 +73,37 @@ def cargar_datos(ruta_archivo):
             "resultado_respuesta": datos[6],"condicion": datos[7]}
 
         lista.append(registro)
+    
+    if len(lista) == 0:
+         raise ValueError("La base de datos está vacía")   
         
-    tiempo_anterior = lista[0]["tiempo_inicio"]
-    for registro in lista[1:]:
-        
+  
+    if len(lista) == 0:
+       raise ValueError("La base de datos está vacía")
+
+
+    datos_por_id = {}
+
+    for registro in lista:
+        id_actual = registro["id"]
+
+        if id_actual not in datos_por_id:
+            datos_por_id[id_actual] = []
+
+        datos_por_id[id_actual].append(registro)
+
+
+    for id_participante in datos_por_id:
+        registros = datos_por_id[id_participante]
+
+        tiempo_anterior = registros[0]["tiempo_inicio"]
+
+        for registro in registros[1:]:
             tiempo_actual = registro["tiempo_inicio"]
-
+    
             if tiempo_actual < tiempo_anterior:
-                raise ValueError("Los tiempos no están en orden creciente")
-
+                raise ValueError(f"Los tiempos no están en orden creciente para el participante {id_participante}")
+    
             tiempo_anterior = tiempo_actual
-            
     return lista
     
