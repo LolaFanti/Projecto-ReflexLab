@@ -5,7 +5,7 @@ Created on Thu Mar 26 13:46:50 2026
 @author: lola_
 """
 
-def trial_positivo(numero):
+def verificar_positivo(numero):
     """"
   
     Convierte el numero en un entero (int). 
