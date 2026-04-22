@@ -84,10 +84,6 @@ def cargar_datos(ruta_archivo):
     if len(lista) == 0:
          raise ValueError("La base de datos está vacía")   
         
-  
-    if len(lista) == 0:
-       raise ValueError("La base de datos está vacía")
-
 
     datos_por_id = {}
 

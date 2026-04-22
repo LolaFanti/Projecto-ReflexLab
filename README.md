@@ -16,13 +16,5 @@ Errores y validaciones:
 
 
 
-Función cargar\_datos: Se maneja el caso en el que el archivo no exista mediante un bloque try/except, se informara al usuario que el archivo no fue encontrado con un raise.
-
-
-
-Funcion métricas: Si el ID del participante buscado no se encuentra entre los IDs disponibles, la lista de datos asociada será vacía. En ese caso, no es posible calcular métricas como el promedio o la tasa de error, ya que implicaría dividir por cero. Para evitar este problema, las funciones de métricas verifican si la lista está vacía y, de ser así, devuelven un mensaje indicando que no hay datos suficientes para realizar el cálculo.
-
-
-
-La información proveniente del archivo, en la función parsear\_linea, no requiere validación adicional, ya que se asume que el archivo de entrada posee el formato correcto y contiene los tipos de datos esperados. Por este motivo, es seguro realizar conversiones directas a tipos numéricos (como int o float) en aquellos campos que se sabe que son numéricos, sin necesidad de verificar previamente su validez.
+El programa valida que el archivo exista y pueda abrirse. Además, verifica que la base de datos cargada contenga registros. Para cada línea del archivo, controla que no esté vacía y que tenga la cantidad correcta de columnas. También comprueba que los tipos de datos sean correctos: trial debe ser entero, tiempo\_inicio y tiempo\_reaccion deben ser numéricos decimales, y respuesta debe ser booleana. A su vez, valida que ciertos valores no sean negativos, como trial y tiempo\_reaccion, y que los campos solo contengan valores permitidos, por ejemplo go o nogo para el estímulo y correcto o incorrecto para el resultado de la respuesta. Por último, verifica que los tiempos de inicio estén en orden creciente para cada participante y que el participante solicitado exista en la base antes de calcular las métricas correspondientes.
 
