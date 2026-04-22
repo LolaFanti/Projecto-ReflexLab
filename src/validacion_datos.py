@@ -16,7 +16,7 @@ def verificar_positivo(numero):
    
     """
     
-    if numero>0:
+    if numero>= 0:
         return numero 
     else: 
         raise ValueError("El numero del trial es negativo")

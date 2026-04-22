@@ -17,13 +17,18 @@ def parsear_linea (linea):
         o contiene datos numéricos inválidos.
     """
     
+    lista = linea.strip().split(",")
+    if len(lista) != 8:
+      raise ValueError("La línea no tiene la cantidad correcta de columnas")
+      
     try:
-        lista = linea.strip().split(",")
+        if len(lista) != 8:
+            raise ValueError("La línea no tiene la cantidad correcta de columnas")
         id_usuario = lista[0] 
         trial = convertir_a_int(lista[1],"trial")
         trial1= verificar_positivo(trial)
         t_inicio= convertir_a_float(lista[3])
-        t_reaccion = convertir_a_float(lista[5])
+        t_reaccion = convertir_a_float(lista[5], "tiempo reaccion")
         t_reaccion1 = verificar_positivo(t_reaccion)
         respuesta = convertir_a_bool_respuesta(lista[4])
         estimulo = validar_go_nogo(lista[2])
@@ -61,11 +66,9 @@ def cargar_datos(ruta_archivo):
     if len(lineas) == 0:
         raise ValueError("El archivo esta vacio")
     
-    
     lista= []
     
     for linea in lineas[1:]:
-        
         datos = parsear_linea(linea)
         registro = {"id": datos[0], "trial": datos[1], "estimulo": datos[2],
             "tiempo_inicio": datos[3], "respuesta": datos[4],"tiempo_reaccion": datos[5],
