@@ -7,18 +7,17 @@ Created on Thu Mar 26 13:48:12 2026
 
 def calcular_tiempo_reaccion_promedio(participante_diccio):
     """
-    Calcula el promedio del tempio de reaccion de un participante.
+    Calcula el promedio del tiempo de reacción de un participante.
 
-    Parameters
+    Parameters:
     ----------
-    participante_diccio : dicc
-        Diccionairo de diccionarios con la información de un participante.
+        participante_diccio (dict): Diccionario con los datos del participante,
+        que contiene una lista de registros bajo la clave "datos".
 
-    Returns
-    -------
-    float: El promedio del tiempo de reaccion.
-    string: Si la lista de tiempos esta vacia, devuelve un mensaje que aclara que no hay datos en la lista..
-
+    Returns:
+    ----------
+        float: El promedio del tiempo de reacción.
+        str: Mensaje indicando que no hay datos si la lista está vacía.
     """
     
     datos = participante_diccio["datos"]
@@ -37,18 +36,15 @@ def calcular_tiempo_reaccion_promedio(participante_diccio):
     
 def calcular_tasa_error(participante_diccio):
     """
-    Calcula la tasa de error (proporción de respuestas incorrectas).
+    Calcula la proporción de respuestas incorrectas de un participante.
 
-    Parameters
-    ----------
-    participante_diccio: dicc
-        Diccionario con la información de un participante.
+    Args:
+        participante_diccio (dict): Diccionario con los datos del participante,
+        que contiene una lista de registros bajo la clave "datos".
 
-    Returns
-    -------
-    float: proporcion de respuestas incorrectas.
-
-    string: Si la lista de tiempos esta vacia, devuelve un mensaje que aclara que no hay datos en la lista
+    Returns:
+        float: Proporción de respuestas incorrectas.
+        str: Mensaje indicando que no hay datos si la lista está vacía.
     """
     datos = participante_diccio["datos"]
     if len(datos) == 0:

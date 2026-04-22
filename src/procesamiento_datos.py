@@ -1,18 +1,19 @@
 def  filtrar_por_participante (lista,id_buscado) :
     """
-    Selecciona los datos de un participante y los separa en un diccionario.
+    Filtra los registros de un participante específico a partir de una lista de datos.
 
-    Parameters
+    Parameters:
     ----------
-    datos : list
-        Contiene los datos de todos los participantes.
-    id_participante : int
-        Id del participante a filtrar.
+        lista (list): Lista de diccionarios con los datos de los participantes.
+        id_buscado (int): Identificador del participante a filtrar.
 
-    Returns
-    datos_participante_filtrado : dicc
-        Con los datos ya filtrados del participante ingresado.
+    Returns:
+    ----------
+        dict: Diccionario con el id del participante y sus registros asociados.
 
+    Raises:
+    ----------
+        ValueError: Si el id del participante no se encuentra en la lista.
     """
     resultado = []
     encontrado = False
