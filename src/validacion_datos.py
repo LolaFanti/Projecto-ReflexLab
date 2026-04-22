@@ -69,5 +69,19 @@ def convertir_a_bool_respuesta(valor):
         return False
     else: 
         raise TypeError("La respuesta debe ser de tipo bool.")
+        
+        
+
+def validar_go_nogo (estimulo):
+    if estimulo.strip() =="go" or estimulo.strip()=="nogo" :
+            return estimulo
+    else:
+            raise ValueError("el estimulo es distinto a 'go' o 'nogo'")
+def validar_respuesta (respuesta):
+    
+    if respuesta.strip() =="correcto" or respuesta.strip()=="incorrecto" :
+        return respuesta
+    else:
+        raise ValueError("La respuesta es distinto a 'correcto' o'incorrecto")
    
 
