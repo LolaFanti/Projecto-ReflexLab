@@ -71,6 +71,16 @@ def cargar_datos(ruta_archivo):
             "resultado_respuesta": datos[6],"condicion": datos[7]}
 
         lista.append(registro)
+        
+    tiempo_anterior = lista[0]["tiempo_inicio"]
+    for registro in lista[1:]:
+        
+            tiempo_actual = registro["tiempo_inicio"]
 
+            if tiempo_actual < tiempo_anterior:
+                raise ValueError("Los tiempos no están en orden creciente")
+
+            tiempo_anterior = tiempo_actual
+            
     return lista
     

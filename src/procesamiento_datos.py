@@ -15,9 +15,14 @@ def  filtrar_por_participante (lista,id_buscado) :
 
     """
     resultado = []
-    if id_buscado not in lista:
+    encontrado = False
+    for registro in lista:
+        if registro["id"] == id_buscado:
+            encontrado = True
+
+    if not encontrado:
         raise ValueError("El ID del participante no esta en el archivo")
-   
+        
     for registro in lista:
         if registro["id"] == id_buscado:
             resultado.append(registro)
