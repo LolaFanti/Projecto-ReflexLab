@@ -1,3 +1,6 @@
+from src.validacion_datos import (trial_positivo, convertir_a_int, convertir_a_float, convertir_a_bool_respuesta,
+                                  validar_go_nogo, validar_respuesta)
+
 def parsear_linea (linea):
     """
     Separa la línea en campos, convierte los valores al tipo correspondiente.
@@ -13,18 +16,26 @@ def parsear_linea (linea):
         Si la línea está vacía, tiene una cantidad incorrecta de campos
         o contiene datos numéricos inválidos.
     """
-    lista = linea.strip().split(",")
-    id_usuario = lista[0] 
-    trial = int(lista[1])
-    t_inicio = float(lista[3])
-    t_reaccion = float(lista[5])
-    respuesta = lista[4]
-    estimulo = lista[2]
-    r_respuesta = lista[6]
-    condicion = lista[7]
     
-    info = [id_usuario, trial, estimulo, t_inicio, respuesta, t_reaccion, r_respuesta, condicion]
-    return info
+    try:
+        lista = linea.strip().split(",")
+        id_usuario = lista[0] 
+        trial = convertir_a_int(lista[1],"trial")
+        trial1= trial_positivo(trial)
+        t_inicio= convertir_a_float(lista[3])
+        t_reaccion = convertir_a_float(lista[5])
+        respuesta = convertir_a_bool_respuesta(lista[4])
+        estimulo = validar_go_nogo(lista[2])
+        r_respuesta = validar_respuesta(lista[6])
+        condicion = lista[7]
+        
+        info = [id_usuario, trial1, estimulo, t_inicio, respuesta, t_reaccion, r_respuesta, condicion]
+        return info
+        
+    except ValueError as e:
+        print(e)
+    except TypeError as e:
+        print(e)
     
 
 def cargar_datos(ruta_archivo):
@@ -48,12 +59,12 @@ def cargar_datos(ruta_archivo):
         raise FileNotFoundError("Archivo no encontrado")
     if len(lineas) == 0:
         raise ValueError("El archivo esta vacio")
-    if len(lineas) != 8:
-        raise ValueError("El numero de columnas no es 8.")
+    
     
     lista= []
     
     for linea in lineas[1:]:
+        
         datos = parsear_linea(linea)
         registro = {"id": datos[0], "trial": datos[1], "estimulo": datos[2],
             "tiempo_inicio": datos[3], "respuesta": datos[4],"tiempo_reaccion": datos[5],
