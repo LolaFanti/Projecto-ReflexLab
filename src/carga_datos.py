@@ -24,12 +24,13 @@ def parsear_linea (linea):
         trial1= trial_positivo(trial)
         t_inicio= convertir_a_float(lista[3])
         t_reaccion = convertir_a_float(lista[5])
+        t_reaccion1 = trial_positivo(t_reaccion)
         respuesta = convertir_a_bool_respuesta(lista[4])
         estimulo = validar_go_nogo(lista[2])
         r_respuesta = validar_respuesta(lista[6])
         condicion = lista[7]
         
-        info = [id_usuario, trial1, estimulo, t_inicio, respuesta, t_reaccion, r_respuesta, condicion]
+        info = [id_usuario, trial1, estimulo, t_inicio, respuesta, t_reaccion1, r_respuesta, condicion]
         return info
         
     except ValueError as e:
