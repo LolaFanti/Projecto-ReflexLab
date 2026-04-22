@@ -3,18 +3,20 @@ from src.validacion_datos import (verificar_positivo, convertir_a_int, convertir
 
 def parsear_linea (linea):
     """
-    Separa la línea en campos, convierte los valores al tipo correspondiente.
-    Parameters
-    ----------
-    linea : str
-        Informacion cruda del archivo.
+    Procesa una línea de texto, separa sus campos y convierte los valores al tipo correspondiente.
 
-    Returns
-    list
-        Lista con los valores parseados.
-    None
-        Si la línea está vacía, tiene una cantidad incorrecta de campos
-        o contiene datos numéricos inválidos.
+    Parameters:
+    ----------
+        linea (str): Línea de texto con los datos crudos.
+
+    Returns:
+    ----------
+        list: Lista con los valores parseados y validados.
+
+    Raises:
+    ----------
+        ValueError: Si la línea está vacía o no tiene la cantidad correcta de campos.
+        TypeError: Si alguno de los valores no puede convertirse al tipo esperado.
     """
     
     if linea.strip() == "":
@@ -44,17 +46,22 @@ def parsear_linea (linea):
 
 def cargar_datos(ruta_archivo):
     """
-    Carga datos desde un archivo y devuelve una lista de registros.
-    Parameters
+    Carga los datos desde un archivo CSV, parsea cada línea y construye una lista de registros.
+    
+    Parameters:
     ----------
-    ruta_archivo : str
-        Ruta del archivo a leer.
+        ruta_archivo (str): Ruta del archivo a leer, sin la extensión ".csv".
 
-    Returns
-    -------
-    lista_registros : list
-        Lista de registros parseados a partir del archivo.
-        Si el archivo no existe, devuelve una lista vacía.
+    Returns:
+    ----------
+        list: Lista de diccionarios con los registros cargados.
+
+    Raises:
+    ----------
+        FileNotFoundError: Si el archivo no puede abrirse.
+        ValueError: Si el archivo está vacío, si no hay registros válidos
+            o si los tiempos de inicio de un participante no están en orden creciente.
+        TypeError: Si ocurre un error en la conversión de los datos al tipo correspondiente.
     """
     try: 
         with open(ruta_archivo + ".csv", "r") as archivo: 
