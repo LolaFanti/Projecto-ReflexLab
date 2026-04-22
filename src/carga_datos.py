@@ -48,6 +48,8 @@ def cargar_datos(ruta_archivo):
         raise FileNotFoundError("Archivo no encontrado")
     if len(lineas) == 0:
         raise ValueError("El archivo esta vacio")
+    if len(lineas) != 8:
+        raise ValueError("El numero de columnas no es 8.")
     
     lista= []
     
