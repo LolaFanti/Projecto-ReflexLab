@@ -1,4 +1,4 @@
-from src.validacion_datos import (trial_positivo, convertir_a_int, convertir_a_float, convertir_a_bool_respuesta,
+from src.validacion_datos import (verificar_positivo, convertir_a_int, convertir_a_float, convertir_a_bool_respuesta,
                                   validar_go_nogo, validar_respuesta)
 
 def parsear_linea (linea):
@@ -21,10 +21,10 @@ def parsear_linea (linea):
         lista = linea.strip().split(",")
         id_usuario = lista[0] 
         trial = convertir_a_int(lista[1],"trial")
-        trial1= trial_positivo(trial)
+        trial1= verificar_positivo(trial)
         t_inicio= convertir_a_float(lista[3])
         t_reaccion = convertir_a_float(lista[5])
-        t_reaccion1 = trial_positivo(t_reaccion)
+        t_reaccion1 = verificar_positivo(t_reaccion)
         respuesta = convertir_a_bool_respuesta(lista[4])
         estimulo = validar_go_nogo(lista[2])
         r_respuesta = validar_respuesta(lista[6])
