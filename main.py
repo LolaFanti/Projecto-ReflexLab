@@ -9,8 +9,12 @@ try:
     
     datos = cargar_datos(ruta_archivo)
 
-   
-    id_participante = input("Ingresá el id del participante: ")
+    try:
+        id_participante = int(input("Ingresá el id del participante: "))
+
+    except ValueError:
+        raise TypeError("El ID debe ser numérico")
+    
 
     
     datos_participante = filtrar_por_participante(datos, id_participante)

@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.validacion_datos import (validar_columnas, convertir_columnas_numericas, verificar_positivo, validar_go_nogo, validar_respuesta, validar_tiempos_crecientes)
+from src.validacion_datos import (convertir_columnas_numericas, verificar_positivo, validar_go_nogo, validar_respuesta, validar_tiempos_crecientes)
 
 def cargar_datos(ruta_archivo):
     """
@@ -23,26 +23,15 @@ def cargar_datos(ruta_archivo):
         TypeError: Si ocurre un error en la conversión de los datos al tipo correspondiente.
     """
     try:
-        df = pd.read_csv(ruta_archivo + ".csv")
+        df = pd.read_csv(ruta_archivo + ".csv", header=None)#Esto porque los arachivos que nos mando marcos no tienen nombre las columnas
+        df.columns = ["id","trial","estimulo","tiempo_inicio","respuesta","tiempo_reaccion","resultado_respuesta","condicion"] 
+        #renombra las columnas(que l)
     except FileNotFoundError:
         raise FileNotFoundError("Archivo no encontrado")
         
     if df.empty:
         raise ValueError("El archivo está vacío")
 
-    
-    columnas_esperadas = [
-        "id",
-        "trial",
-        "estimulo",
-        "tiempo_inicio",
-        "respuesta",
-        "tiempo_reaccion",
-        "resultado_respuesta",
-        "condicion"]
-
-
-    validar_columnas(df, columnas_esperadas)
     
     convertir_columnas_numericas(df,["trial", "tiempo_inicio", "tiempo_reaccion"])
         

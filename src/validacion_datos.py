@@ -1,9 +1,5 @@
 import pandas as pd
 
-def validar_columnas(df, columnas_esperadas):
-
-    if list(df.columns) != columnas_esperadas:
-        raise ValueError("Las columnas del archivo no son correctas")
 
 def convertir_columnas_numericas(df, columnas):
 
