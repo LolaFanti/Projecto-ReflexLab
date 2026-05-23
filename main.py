@@ -22,7 +22,7 @@ try:
     
     print("Resultados del análisis")
     print("Participante:", id_participante)
-    print("Cantidad de registros:", len(datos_participante["datos"]))
+    print("Cantidad de registros:", len(datos_participante))
     print("Tiempo de reacción promedio:", promedio_tiempo)
     print("Tasa de error:", tasa_error)
 

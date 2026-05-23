@@ -1,11 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Mar 26 13:48:12 2026
 
-@author: lola_
-"""
-
-def calcular_tiempo_reaccion_promedio(participante_diccio):
+def calcular_tiempo_reaccion_promedio(df_participante):
     """
     Calcula el promedio del tiempo de reacción de un participante.
 
@@ -20,21 +14,14 @@ def calcular_tiempo_reaccion_promedio(participante_diccio):
         str: Mensaje indicando que no hay datos si la lista está vacía.
     """
     
-    datos = participante_diccio["datos"]
-    if len(datos) == 0:
-       mensaje = "No hay datos para calcular promedio"
-       return mensaje
-   
-    suma = 0
+    if df_participante.empty:
+       return "No hay datos para calcular promedio"
 
-    for dato in datos:
-       suma += dato["tiempo_reaccion"]
+    return df_participante["tiempo_reaccion"].mean()
 
-    promedio = suma / len(datos)
-
-    return promedio
     
-def calcular_tasa_error(participante_diccio):
+    
+def calcular_tasa_error(df_participante):
     """
     Calcula la proporción de respuestas incorrectas de un participante.
 
@@ -46,20 +33,15 @@ def calcular_tasa_error(participante_diccio):
         float: Proporción de respuestas incorrectas.
         str: Mensaje indicando que no hay datos si la lista está vacía.
     """
-    datos = participante_diccio["datos"]
-    if len(datos) == 0:
-       mensaje = "No hay datos para calcular tasa de error"
-       return mensaje
+   
+    if df_participante.empty:
+        return "No hay datos para calcular tasa de error"
 
-    errores = 0
+    errores = df_participante["resultado_respuesta"] == "incorrecto" #queda como una columna de True y False
 
-    for dato in datos:
-       if dato["resultado_respuesta"].lower() == "incorrecto":
-           errores += 1
+    return errores.mean()
 
-    tasa = errores / len(datos)
 
-    return tasa
 
 
 

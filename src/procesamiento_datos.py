@@ -1,4 +1,4 @@
-def  filtrar_por_participante (lista,id_buscado) :
+def  filtrar_por_participante (df, id_buscado) :
     """
     Filtra los registros de un participante específico a partir de una lista de datos.
 
@@ -15,20 +15,12 @@ def  filtrar_por_participante (lista,id_buscado) :
     ----------
         ValueError: Si el id del participante no se encuentra en la lista.
     """
-    resultado = []
-    encontrado = False
-    for registro in lista:
-        if registro["id"] == id_buscado:
-            encontrado = True
+    df_filtrado = df[df["id"] == id_buscado] #hace una serie de booleanos, y devuelve solo las filas True.
 
-    if not encontrado:
-        raise ValueError("El ID del participante no esta en el archivo")
-        
-    for registro in lista:
-        if registro["id"] == id_buscado:
-            resultado.append(registro)
-    
-    datos_participante_filtrado = {"id": id_buscado, "datos": resultado}
-    return datos_participante_filtrado
+    if len(df_filtrado) == 0:
+
+        raise ValueError("El ID del participante no está en el archivo")
+
+    return df_filtrado
 
         
