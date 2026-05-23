@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.validacion_datos import (validar_columnas, convertir_columnas_numericas, verificar_positivos, validar_go_nogo, validar_respuesta, validar_tiempos_crecientes)
+from src.validacion_datos import (validar_columnas, convertir_columnas_numericas, verificar_positivo, validar_go_nogo, validar_respuesta, validar_tiempos_crecientes)
 
 def cargar_datos(ruta_archivo):
     """
@@ -47,9 +47,9 @@ def cargar_datos(ruta_archivo):
     convertir_columnas_numericas(df,["trial", "tiempo_inicio", "tiempo_reaccion"])
         
 
-    verificar_positivos(df, "trial")
-    verificar_positivos(df, "tiempo_inicio")
-    verificar_positivos(df, "tiempo_reaccion")
+    verificar_positivo(df, "trial")
+    verificar_positivo(df, "tiempo_inicio")
+    verificar_positivo(df, "tiempo_reaccion")
 
     validar_go_nogo(df)
     validar_respuesta(df)
