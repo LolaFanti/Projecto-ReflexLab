@@ -51,7 +51,7 @@ def graficar_tiempo_reaccion(df_participante, id_participante):
     plt.xlabel("Trial")
     plt.ylabel("Tiempo de reacción")
 
-    plt.savefig(f"graficos/tiempo_reaccion_{id_participante}.png")
+    plt.savefig(f"graficos/tiempo_reaccion_{id_participante}.png")#para que se guarde en graficos 
 
     plt.close()
 
@@ -69,7 +69,7 @@ def graficar_tasa_error(df_participante, id_participante):
 
     plt.title(f"Tasa de error - Participante {id_participante}")
 
-    plt.savefig(f"graficos/tasa_error_{id_participante}.png")
+    plt.savefig(f"graficos/tasa_error_{id_participante}.png")#para que se guarde en graficos 
 
     plt.close()
 
