@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 
 def calcular_tiempo_reaccion_promedio(df_participante):
     """
@@ -41,8 +42,36 @@ def calcular_tasa_error(df_participante):
 
     return errores.mean()
 
+def graficar_tiempo_reaccion(df_participante, id_participante):
+    
+    plt.plot(df_participante["trial"],df_participante["tiempo_reaccion"])
 
+    plt.title(f"Tiempo de reacción - Participante {id_participante}")
 
+    plt.xlabel("Trial")
+    plt.ylabel("Tiempo de reacción")
+
+    plt.savefig(f"graficos/tiempo_reaccion_{id_participante}.png")
+
+    plt.close()
+
+def graficar_tasa_error(df_participante, id_participante):
+
+    errores = calcular_tasa_error(df_participante)
+
+    aciertos = 1 - errores #el resto fueron correctas. ej si errores = 0,2 aciertos va a ser= 0,8
+
+    valores = [aciertos, errores]
+
+    etiquetas = ["Correctas", "Incorrectas"]
+
+    plt.pie(valores, labels=etiquetas, autopct="%1.1f%%")# esto de autopct me lo dijo chat gpt porque se imprimia mal sino.
+
+    plt.title(f"Tasa de error - Participante {id_participante}")
+
+    plt.savefig(f"graficos/tasa_error_{id_participante}.png")
+
+    plt.close()
 
 
     

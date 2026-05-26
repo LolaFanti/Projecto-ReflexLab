@@ -1,7 +1,7 @@
 
 from src.carga_datos import cargar_datos
 from src.procesamiento_datos import filtrar_por_participante
-from src.metricas import calcular_tiempo_reaccion_promedio, calcular_tasa_error
+from src.metricas import calcular_tiempo_reaccion_promedio, calcular_tasa_error, graficar_tiempo_reaccion, graficar_tasa_error
 
 ruta_archivo = input("Ingresá el nombre del archivo sin .csv: ")
 
@@ -41,5 +41,7 @@ except TypeError as e:
     print("Error:", e)
 
 
+graficar_tiempo_reaccion(datos_participante, id_participante)
+graficar_tasa_error(datos_participante, id_participante)
 
  
