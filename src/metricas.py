@@ -43,6 +43,20 @@ def calcular_tasa_error(df_participante):
     return errores.mean()
 
 def graficar_tiempo_reaccion(df_participante, id_participante):
+    '''
+
+    Parameters
+    ----------
+    df_participante : pandas.DataFrame
+        DataFrame que contiene los datos del participante
+    id_participante : int
+        Numero de identificacion del participante que se busca.
+
+    Returns
+    -------
+    None.
+
+    '''
     
     plt.plot(df_participante["trial"],df_participante["tiempo_reaccion"])
 
@@ -56,6 +70,20 @@ def graficar_tiempo_reaccion(df_participante, id_participante):
     plt.close()
 
 def graficar_tasa_error(df_participante, id_participante):
+    '''
+
+    Parameters
+    ----------
+    df_participante : pandas.DataFrame
+        DataFrame que contiene los datos del participante.
+    id_participante : int
+        Numero de identificacion del participante que se busca.
+
+    Returns
+    -------
+    None.
+
+    '''
 
     errores = calcular_tasa_error(df_participante)
 

@@ -2,6 +2,26 @@ import pandas as pd
 
 
 def convertir_columnas_numericas(df, columnas):
+    '''
+    
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        DataFrame que contiene los datos.
+    columnas : list
+        Lista con los nombres de las columnas que se van a convertir.
+
+    Raises
+    ------
+    TypeError
+        La columna debe contener valores numéricos.
+
+    Returns
+    -------
+    None.
+
+    '''
 
     for columna in columnas:
 
@@ -112,6 +132,24 @@ def validar_respuesta (df):
         raise ValueError("Hay respuestas inválidas")
 
 def validar_tiempos_crecientes(df):
+    '''
+    
+
+    Parameters
+    ----------
+    df : pd.DataFrama
+        DataFrame que contiene los datos.
+
+    Raises
+    ------
+    ValueError
+        Los tiempos no están en orden creciente para el participante.
+
+    Returns
+    -------
+    None.
+
+    '''
 
     for id_participante, grupo in df.groupby("id"):
 
