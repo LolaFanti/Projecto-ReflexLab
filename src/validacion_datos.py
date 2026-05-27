@@ -3,7 +3,8 @@ import pandas as pd
 
 def convertir_columnas_numericas(df, columnas):
     '''
-    
+    Verifica que las columnas esten compuestas de numeros. 
+    Si son numeros los transforma en informacion numerica. 
 
     Parameters
     ----------
@@ -133,7 +134,7 @@ def validar_respuesta (df):
 
 def validar_tiempos_crecientes(df):
     '''
-    
+    Valida los tiempos del Dataframe y los ordena de forma creciente. 
 
     Parameters
     ----------
