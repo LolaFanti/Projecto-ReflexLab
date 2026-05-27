@@ -44,7 +44,8 @@ def calcular_tasa_error(df_participante):
 
 def graficar_tiempo_reaccion(df_participante, id_participante):
     '''
-
+    Genera un gráfico del tiempo de reacción de un participante
+    y lo guarda en la carpeta "graficos".
     Parameters
     ----------
     df_participante : pandas.DataFrame
@@ -71,7 +72,8 @@ def graficar_tiempo_reaccion(df_participante, id_participante):
 
 def graficar_tasa_error(df_participante, id_participante):
     '''
-
+    Genera un gráfico circular con la tasa de error
+    del participante y lo guarda en la carpeta "graficos".
     Parameters
     ----------
     df_participante : pandas.DataFrame
