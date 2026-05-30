@@ -23,7 +23,7 @@ def cargar_datos(ruta_archivo):
         TypeError: Si ocurre un error en la conversión de los datos al tipo correspondiente.
     """
     try:
-        df = pd.read_csv(ruta_archivo + ".csv", header=None)#Esto porque los arachivos que nos mando marcos no tienen nombre las columnas
+        df = pd.read_csv(ruta_archivo, header=None)#Esto porque los arachivos que nos mando marcos no tienen nombre las columnas
         df.columns = ["id","trial","estimulo","tiempo_inicio","respuesta","tiempo_reaccion","resultado_respuesta","condicion"] 
         #renombra las columnas(que l)
     except FileNotFoundError:
