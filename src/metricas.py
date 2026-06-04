@@ -2,17 +2,19 @@ import matplotlib.pyplot as plt
 
 def calcular_tiempo_reaccion_promedio(df_participante):
     """
-    Calcula el promedio del tiempo de reacción de un participante.
-
-    Parameters:
+    Calcula el tiempo de reacción promedio de un participante.
+    
+    Parameters
     ----------
-        participante_diccio (dict): Diccionario con los datos del participante,
-        que contiene una lista de registros bajo la clave "datos".
-
-    Returns:
-    ----------
-        float: El promedio del tiempo de reacción.
-        str: Mensaje indicando que no hay datos si la lista está vacía.
+    df_participante : pd.DataFrame
+        DataFrame que contiene los datos de un participante.
+    
+    Returns
+    -------
+    float
+        Tiempo de reacción promedio.
+    str
+        Mensaje indicando que no hay datos para realizar el cálculo.
     """
     
     if df_participante.empty:
@@ -23,16 +25,20 @@ def calcular_tiempo_reaccion_promedio(df_participante):
     
     
 def calcular_tasa_error(df_participante):
-    """
+    """  
     Calcula la proporción de respuestas incorrectas de un participante.
-
-    Args:
-        participante_diccio (dict): Diccionario con los datos del participante,
-        que contiene una lista de registros bajo la clave "datos".
-
-    Returns:
-        float: Proporción de respuestas incorrectas.
-        str: Mensaje indicando que no hay datos si la lista está vacía.
+    
+    Parameters
+    ----------
+    df_participante : pd.DataFrame
+        DataFrame que contiene los datos de un participante.
+    
+    Returns
+    -------
+    float
+        Proporción de respuestas incorrectas.
+    str
+        Mensaje indicando que no hay datos para realizar el cálculo.
     """
    
     if df_participante.empty:
@@ -46,6 +52,7 @@ def graficar_tiempo_reaccion(df_participante, id_participante):
     '''
     Genera un gráfico del tiempo de reacción de un participante
     y lo guarda en la carpeta "graficos".
+    
     Parameters
     ----------
     df_participante : pandas.DataFrame

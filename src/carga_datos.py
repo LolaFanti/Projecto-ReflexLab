@@ -4,23 +4,28 @@ from src.validacion_datos import (convertir_columnas_numericas, verificar_positi
 
 def cargar_datos(ruta_archivo):
     """
-  
-    Carga los datos desde un archivo CSV, parsea cada línea y construye una lista de registros.
+    Carga un archivo CSV y valida el contenido de sus datos.
     
-    Parameters:
+    Parameters
     ----------
-        ruta_archivo (str): Ruta del archivo a leer, sin la extensión ".csv".
-
-    Returns:
-    ----------
-        list: Lista de diccionarios con los registros cargados.
-
-    Raises:
-    ----------
-        FileNotFoundError: Si el archivo no puede abrirse.
-        ValueError: Si el archivo está vacío, si no hay registros válidos
-            o si los tiempos de inicio de un participante no están en orden creciente.
-        TypeError: Si ocurre un error en la conversión de los datos al tipo correspondiente.
+    ruta_archivo : str o file-like object
+        Ruta del archivo CSV o archivo cargado por el usuario.
+    
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame con los datos cargados y validados.
+    
+    Raises
+    ------
+    FileNotFoundError
+        Si el archivo no puede abrirse.
+    ValueError
+        Si el archivo está vacío, contiene valores inválidos
+        o los tiempos no están en orden creciente.
+    TypeError
+        Si alguna columna que debe ser numérica contiene
+        valores no numéricos.
     """
     try:
         df = pd.read_csv(ruta_archivo, header=None)#Esto porque los arachivos que nos mando marcos no tienen nombre las columnas

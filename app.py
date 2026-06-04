@@ -6,9 +6,15 @@ from src.carga_datos import cargar_datos
 from src.procesamiento_datos import filtrar_por_participante
 from src.metricas import (
     calcular_tiempo_reaccion_promedio,
-    calcular_tasa_error
-)
+    calcular_tasa_error)
 
+"""
+Dashboard principal de la aplicación Go/No-Go.
+
+Permite cargar un archivo CSV, seleccionar un participante,
+calcular métricas de desempeño y visualizar los resultados
+mediante gráficos interactivos en Streamlit.
+"""
 
 st.title("Dashboard Go/No-Go")
 
@@ -16,8 +22,7 @@ st.write("Subí el archivo CSV del laboratorio para analizar los datos.")
 
 archivo = st.file_uploader(
     "Arrastrá o seleccioná tu archivo CSV",
-    type=["csv"]
-)
+    type=["csv"])
 
 if archivo is not None:
 
@@ -44,8 +49,7 @@ if archivo is not None:
 
     id_participante = st.selectbox(
         "Seleccioná el participante",
-        ids_disponibles
-    )
+        ids_disponibles)
 
     try:
         datos_participante = filtrar_por_participante(datos, id_participante)
@@ -78,8 +82,7 @@ if archivo is not None:
 
     ax1.plot(
         datos_participante["trial"],
-        datos_participante["tiempo_reaccion"]
-    )
+        datos_participante["tiempo_reaccion"])
 
     ax1.set_title(f"Tiempo de reacción - Participante {id_participante}")
     ax1.set_xlabel("Trial")
@@ -95,8 +98,7 @@ if archivo is not None:
     ax2.pie(
         [aciertos, errores],
         labels=["Correctas", "Incorrectas"],
-        autopct="%1.1f%%"
-    )
+        autopct="%1.1f%%")
 
     ax2.set_title(f"Tasa de error - Participante {id_participante}")
 

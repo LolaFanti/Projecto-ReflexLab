@@ -21,6 +21,7 @@ def convertir_columnas_numericas(df, columnas):
     Returns
     -------
     None.
+        Modifica las columnas del DataFrame en el lugar.
 
     '''
 
@@ -34,20 +35,23 @@ def convertir_columnas_numericas(df, columnas):
 
 def verificar_positivo(df, columna):
     """"
-  
-    Convierte el numero en un entero (int). 
-    Verifica que el numero sea positivo
-    Parameters:
+    Verifica que una columna no contenga valores negativos.
+    
+    Parameters
     ----------
-    numero: int
-        Numero a verificar que sea positivo.  
-
-
+    df : pd.DataFrame
+        DataFrame que contiene los datos.
+    columna : str
+        Nombre de la columna a validar.
+    
+    Raises
+    ------
+    ValueError
+        Si la columna contiene valores negativos.
+    
     Returns
     -------
-    Numero: int
-        Numero entero y positivo. 
-   
+    None. 
     """
     
     if (df[columna] < 0).any():
@@ -63,15 +67,18 @@ def convertir_a_bool_respuesta(valor):
 
     Parameters:
     ----------
-        valor (str): Texto a convertir.
+    valor (str): 
+        Texto a convertir.
 
     Returns:
     ----------
-        bool: True o False según el valor ingresado.
+    bool: True o False 
+        Según el valor ingresado.
 
     Raises:
     ----------
-        TypeError: Si el valor no corresponde a un booleano válido.
+    TypeError: 
+        Si el valor no corresponde a un booleano válido.
     """
        
     texto = valor.strip().lower()
@@ -87,19 +94,22 @@ def convertir_a_bool_respuesta(valor):
 
 def validar_go_nogo (df):
     """
-    Valida que el estímulo sea 'go' o 'nogo'.
-
-    Parameters:
+    Valida que todos los valores de la columna 'estimulo'
+    sean 'go' o 'nogo'.
+    
+    Parameters
     ----------
-        estimulo (str): Texto que representa el estímulo.
-
-    Returns:
-    ----------
-        str: El estímulo validado.
-
-    Raises:
-    ----------
-        ValueError: Si el estímulo no es 'go' ni 'nogo'.
+    df : pd.DataFrame
+        DataFrame que contiene los datos.
+    
+    Raises
+    ------
+    ValueError
+        Si existe algún estímulo distinto de 'go' o 'nogo'.
+    
+    Returns
+    -------
+    None.
     """
     df["estimulo"] = (df["estimulo"].str.lower().str.strip()) #modifica la columna "estimulo".
 
@@ -110,19 +120,22 @@ def validar_go_nogo (df):
         
 def validar_respuesta (df):
     """
-    Valida que la respuesta sea 'correcto' o 'incorrecto'.
-
-    Parameters:
+    Valida que todos los valores de la columna
+    'resultado_respuesta' sean 'correcto' o 'incorrecto'.
+    
+    Parameters
     ----------
-        respuesta (str): Texto que representa la respuesta.
-
-    Returns:
-    ----------
-        str: La respuesta validada.
-
-    Raises:
-    ----------
-        ValueError: Si la respuesta no es 'correcto' ni 'incorrecto'.
+    df : pd.DataFrame
+        DataFrame que contiene los datos.
+    
+    Raises
+    ------
+    ValueError
+        Si existe alguna respuesta inválida.
+    
+    Returns
+    -------
+    None.
     """
     df["resultado_respuesta"] = (df["resultado_respuesta"].str.lower().str.strip())
 
@@ -134,7 +147,7 @@ def validar_respuesta (df):
 
 def validar_tiempos_crecientes(df):
     '''
-    Valida los tiempos del Dataframe y los ordena de forma creciente. 
+    Valida los tiempos del DataFrame y los ordena de forma creciente. 
 
     Parameters
     ----------
